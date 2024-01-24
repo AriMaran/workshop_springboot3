@@ -1,7 +1,9 @@
 package com.maran.workshop.config;
 
+import com.maran.workshop.entities.Category;
 import com.maran.workshop.entities.Order;
 import com.maran.workshop.entities.enums.OrderStatus;
+import com.maran.workshop.repositories.CategoryRepository;
 import com.maran.workshop.repositories.OrderRepository;
 import com.maran.workshop.repositories.UserRepository;
 import com.maran.workshop.entities.User;
@@ -21,10 +23,18 @@ public class TestConfig implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
 
     @Override
     public void run(String... args) throws Exception {
+
+
+        Category cat1 = new Category("Eletronics");
+        Category cat2 = new Category("Books");
+        Category cat3 = new Category("Computer");
+        categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
 
         User u1 = new User("Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User("Alex Green", "alex@gmail.com", "977777777", "123456");
